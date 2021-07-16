@@ -23,12 +23,12 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
       working-directory: ./GitHubActions
+      
   tests:
   
+    name: Unit Testing
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v2.1.0
-    - name: Unit Testing
-    - run: dotnet test
-    - working-directory: ./GitHubActions
+      - uses: actions/checkout@v2.1.0
+      - run: dotnet test
+      - working-directory: ./GitHubActions
