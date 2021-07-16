@@ -31,6 +31,7 @@ jobs:
       working-directory: ./GitHubActions
     - name: dotnet publish
       run: dotnet publish --no-build -c Release -o ./published
+      #run: dotnet publish --no-build -c Release -o ./published
       working-directory: ./GitHubActions
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
