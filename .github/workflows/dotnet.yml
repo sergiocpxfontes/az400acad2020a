@@ -1,5 +1,8 @@
 name: PipelineMVC
 
+env:
+  AZURE_WEBAPP_NAME: githubactionswebapp   
+
 on:
   push:
     branches: [ main ]
@@ -26,7 +29,12 @@ jobs:
     - name: unit testing
       run: dotnet test
       working-directory: ./GitHubActions
-      
+    - name: dotnet publish
+      run: |
+        dotnet publish -c Release -o dotnetcorewebapp
+
+    
+    
     #- name: XUnit Viewer
     #  uses: AutoModality/action-xunit-viewer@v1.0.1
     #  with:
