@@ -2,7 +2,7 @@ name: PipelineMVC
 
 env:
   AZURE_WEBAPP_NAME: githubactionswebapp   
-
+  AZURE_WEBAPP_PACKAGE_PATH: 'build'
 on:
   push:
     branches: [ main ]
@@ -30,14 +30,14 @@ jobs:
       run: dotnet test
       working-directory: ./GitHubActions
     - name: dotnet publish
-      run: dotnet publish -c Release
+      run: dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
       working-directory: ./GitHubActions
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-    
+        package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
     #- name: XUnit Viewer
     #  uses: AutoModality/action-xunit-viewer@v1.0.1
     #  with:
