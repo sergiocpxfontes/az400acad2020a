@@ -2,7 +2,7 @@ name: PipelineMVC
 
 env:
   AZURE_WEBAPP_NAME: githubactionswebapp   
-  AZURE_WEBAPP_PACKAGE_PATH: '.published'
+  AZURE_WEBAPP_PACKAGE_PATH: './published'
 on:
   push:
     branches: [ main ]
