@@ -30,9 +30,8 @@ jobs:
       run: dotnet test
       working-directory: ./GitHubActions
     - name: dotnet publish
-      run: |
-        dotnet publish -c Release -o dotnetcorewebapp
-
+      run: dotnet publish -c Release -o dotnetcorewebapp
+      working-directory: ./GitHubActions
     
     
     #- name: XUnit Viewer
