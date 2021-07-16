@@ -26,8 +26,10 @@ jobs:
     - name: unit testing
       run: dotnet test
       working-directory: ./GitHubActions
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      if: always()
+    - name: XUnit Viewer
+      uses: AutoModality/action-xunit-viewer@v1.0.1
       with:
-        files: test-results/**/*.xml
+        if: always()
+        name: test output
+        path: artifacts/test
+        
