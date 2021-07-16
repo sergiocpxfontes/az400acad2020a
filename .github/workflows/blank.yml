@@ -11,8 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run a one-line script
-         run: echo este é um primeiro exemplo
+        run: | 
+          echo este é um primeiro exemplo
       - name: Run a multi-line script
-         run: |
+        run: |
           echo outras ações a executar
           echo testar o projecto.
