@@ -2,7 +2,7 @@ name: PipelineMVC
 
 env:
   AZURE_WEBAPP_NAME: githubactionswebapp   
-  AZURE_WEBAPP_PACKAGE_PATH: './published'
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
 on:
   push:
     branches: [ main ]
@@ -38,7 +38,7 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ./published
+        package:  ${{ secrets.AZURE_WEBAPP_PACKAGE_PATH}}
     #- name: XUnit Viewer
     #  uses: AutoModality/action-xunit-viewer@v1.0.1
     #  with:
