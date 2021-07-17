@@ -2,6 +2,10 @@
 
 name: CICD de uma webapp para o azure
 
+env:
+  AZURE_WEBAPP_NAME: gituhubactionswebapp2
+
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -48,3 +52,13 @@ jobs:
       - name: Publish
         run: dotnet publish --no-build -c Release
         working-directory: ./GitHubActions
+      
+      - name: Enviar para Azure Web App
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ${{env.AZURE_WEBAPP_NAME}}
+          publish-profile: ${{secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}
+          package: .
+
+
+      
