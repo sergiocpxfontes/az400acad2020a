@@ -1,5 +1,8 @@
 name: PipelineMVC
 
+env:
+  AZURE_WEBAPP_NAME: githubactionswebapp   
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
 on:
   push:
     branches: [ main ]
@@ -21,8 +24,24 @@ jobs:
       run: dotnet restore
       working-directory: ./GitHubActions
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -c Release
       working-directory: ./GitHubActions
-    - name: Test
+    - name: unit testing
       run: dotnet test
       working-directory: ./GitHubActions
+    - name: dotnet publish
+      run: dotnet publish --no-build -c Release
+      #run: dotnet publish --no-build -c Release -o ./published
+      working-directory: ./GitHubActions
+    - name: Deploy to Azure WebApp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package:  /home/runner/work/az400acad2020a/az400acad2020a/GitHubActions/WebAppMVC/bin/Release/net5.0/publish/
+    #- name: XUnit Viewer
+    #  uses: AutoModality/action-xunit-viewer@v1.0.1
+    #  with:
+    #    results: test-reports
+    #    output: testreports
+        
