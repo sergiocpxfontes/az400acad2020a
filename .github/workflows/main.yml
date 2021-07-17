@@ -44,3 +44,7 @@ jobs:
       - name: xUnit tests
         run: dotnet test
         working-directory: ./GitHubActions
+      
+      - name: Publish
+        run: dotnet publish --no-build -c Release
+        working-directory: ./GitHubActions
