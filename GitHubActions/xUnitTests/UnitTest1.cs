@@ -10,5 +10,11 @@ namespace xUnitTests
         {
             Assert.Equal(1, 1);
         }
+
+        [Fact]
+        public void Test2()
+        {
+            Assert.Equal(1, 1);
+        }
     }
 }
