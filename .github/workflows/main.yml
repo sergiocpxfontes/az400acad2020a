@@ -36,3 +36,7 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
         working-directory: ./GitHubActions
+      
+      - name: Build
+        run: dotnet build --no-restore -c Release
+        working-directory: ./GitHubActions
